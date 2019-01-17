@@ -1,0 +1,48 @@
+service:
+  name: promoverify
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-2
+  stage: dev
+  environment:
+    PG_HOST: ${file(./env.dev.json):PG_HOST}
+    PG_USERNAME: ${file(./env.dev.json):PG_USERNAME}
+    PG_PASSWORD: ${file(./env.dev.json):PG_PASSWORD}
+    PG_DATABASE: ${file(./env.dev.json):PG_DATABASE}
+    PG_PORT: ${file(./env.dev.json):PG_PORT}
+    PG_MAXPOOLS: ${file(./env.dev.json):PG_MAXPOOLS}
+    REDIS_HOST: ${file(./env.dev.json):REDIS_HOST}
+    REDIS_PASSWORD: ${file(./env.dev.json):REDIS_PASSWORD}
+  iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+       - "ec2:CreateNetworkInterface"
+       - "ec2:DescribeNetworkInterfaces"
+       - "ec2:DetachNetworkInterface"
+       - "ec2:DeleteNetworkInterface"
+       - "ses:SendEmail"
+     Resource: "*"
+
+functions:
+  api:
+    handler: src/api.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{any+}
+          method: ANY
+    vpc:
+     securityGroupIds:
+       - sg-395e1153
+     subnetIds:
+       - subnet-407e1429
+       - subnet-63da6918
+       - subnet-c23dfe8f

@@ -1,0 +1,33 @@
+{
+  "name": "aws-nodejs-ecma-script",
+  "version": "1.0.0",
+  "description": "Serverless webpack example using ecma script",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_PATH=src APP_ENV=local nodemon src/local --exec babel-node --plugins transform-es2015-modules-commonjs",
+    "deploy:dev": "sls deploy --stage dev"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "serverless-webpack": "^3.1.1",
+    "webpack": "^3.3.0"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "chalk": "^2.4.2",
+    "dotenv": "^6.2.0",
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0",
+    "moment": "^2.23.0",
+    "nodemon": "^1.18.9",
+    "pg": "^7.8.0",
+    "redis": "^2.8.0",
+    "serverless-http": "^1.8.0"
+  }
+}
