@@ -4,6 +4,10 @@ import redisClient from 'lib/redis';
 
 const router = new Router();
 
+router.get('/', async (ctx) => {
+  ctx.body = 'Hello, Promoverify!';
+});
+
 router.get('/count', async (ctx) => {
   const result = await userDB.getUserCount();
   

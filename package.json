@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_PATH=src APP_ENV=local nodemon src/local --exec babel-node --plugins transform-es2015-modules-commonjs",
-    "deploy:dev": "sls deploy --stage dev"
+    "deploy:dev": "sls deploy --stage dev",
+    "test:dev": "sls invoke --function api --path ./test.json"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
